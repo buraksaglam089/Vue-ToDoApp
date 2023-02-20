@@ -1,11 +1,12 @@
 <template>
-    <HeaderComponent @add:card="onAddCard"></HeaderComponent>
-    <AppCard :cards="cards"></AppCard>
+    <h1 class="flex justify-content-center font-arial color-pink">To Do List App</h1>
+    <ShowHeader @add:card="onAddCard"></ShowHeader>
+    <ShowCard @delete:card="onDeleteCard" :cards="cards"></ShowCard>
 </template>
 
 <script>
-import HeaderComponent from './components/HeaderComponent.vue';
-import AppCard from './components/AppCard.vue';
+import ShowHeader from './components/ShowHeader.vue';
+import ShowCard from './components/ShowCard.vue';
 
 export default {
     data() {
@@ -15,12 +16,17 @@ export default {
     },
     methods: {
         onAddCard(card) {
+            console.log(card);
             this.cards.push(card);
+        },
+        onDeleteCard(id) {
+            console.log(id);
+            this.cards = this.cards.filter((card) => card.id !== id);
         }
     },
     components: {
-        HeaderComponent,
-        AppCard
+        ShowHeader,
+        ShowCard
     }
 };
 </script>
