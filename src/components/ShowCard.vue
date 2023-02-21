@@ -11,13 +11,19 @@
                 <template #content>
                     {{ card.description }}
                 </template>
+                <template #footer>
+                    <div class="flex justify-content-end px-0">
+                        <i @click="editCard(card)" class="pi pi-pencil"></i>
+                    </div>
+                </template>
             </Card>
         </div>
     </div>
 </template>
 <script>
 export default {
-    emits: ['delete:card'],
+    emits: ['delete:card', 'edit:card'],
+
     props: {
         cards: {
             type: Array,
@@ -27,6 +33,9 @@ export default {
     methods: {
         deleteCard(card) {
             this.$emit('delete:card', card);
+        },
+        editCard(card) {
+            this.$emit('edit:card', card);
         }
     }
 };
